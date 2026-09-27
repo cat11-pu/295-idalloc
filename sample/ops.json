@@ -1,0 +1,13 @@
+{
+  "budget": 2,
+  "id_error_code": "E_NOT_ALLOCATED",
+  "event_error_code": "E_BAD_EVENT",
+  "state": { "next": 1, "pool": [], "allocated": [], "ledger": [], "applied": [] },
+  "events": [
+    { "id": 1, "kind": "alloc" },
+    { "id": 2, "kind": "alloc" },
+    { "id": 3, "kind": "free", "number": 1 },
+    { "id": 4, "kind": "alloc" },
+    { "id": 5, "kind": "free", "number": 2 }
+  ]
+}
