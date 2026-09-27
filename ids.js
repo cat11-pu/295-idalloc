@@ -1,8 +1,21 @@
-// ids.js：取最小空闲与分配（基线：一律给零、原样返回）
+// ids.js：空闲池取最小复用；池空时发从未用过的新编号并推进计数器
 export function smallestFree(pool) {
-  return 0;
+  if (!Array.isArray(pool) || pool.length === 0) return 0;
+  let min = pool[0];
+  for (const candidate of pool) {
+    if (candidate < min) min = candidate;
+  }
+  return min;
 }
 
 export function takeId(state) {
-  return 0;
+  if (Array.isArray(state.pool) && state.pool.length > 0) {
+    const id = smallestFree(state.pool);
+    const index = state.pool.indexOf(id);
+    state.pool.splice(index, 1);
+    return id;
+  }
+  const id = state.next;
+  state.next += 1;
+  return id;
 }
